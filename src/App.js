@@ -55,13 +55,21 @@ class App extends Component {
           onSubmit={function (_title, _desc) {
             // console.log(_title, _desc);
             this.max_content_id += 1;
-            const _contents = this.state.contents.concat({
+            // const _contents = this.state.contents.concat({
+            //   id: this.max_content_id,
+            //   title: _title,
+            //   desc: _desc,
+            // });
+            const _contents = Array.from(this.state.contents);
+            _contents.push({
               id: this.max_content_id,
               title: _title,
               desc: _desc,
             });
             this.setState({
               contents: _contents,
+              mode: "read",
+              selected_content_id: this.max_content_id,
             });
           }.bind(this)}
         ></CreateContent>
@@ -71,15 +79,26 @@ class App extends Component {
       _article = (
         <UpdateContent
           data={_content}
-          onSubmit={function (_title, _desc) {
-            this.max_content_id += 1;
-            const _contents = this.state.contents.concat({
-              id: this.max_content_id,
-              title: _title,
-              desc: _desc,
-            });
+          onSubmit={function (_id, _title, _desc) {
+            // this.max_content_id += 1;
+            // const _contents = this.state.contents.concat({
+            //   id: _id,
+            //   title: _title,
+            //   desc: _desc,
+            // });
+            console.log(_id, _title, _desc);
+            const _contents = Array.from(this.state.contents);
+            let i = 0;
+            while (i < _contents.length) {
+              if (_contents[i].id === _id) {
+                _contents[i] = { id: _id, title: _title, desc: _desc };
+                break;
+              }
+              i += 1;
+            }
             this.setState({
               contents: _contents,
+              mode: "read",
             });
           }.bind(this)}
         ></UpdateContent>
