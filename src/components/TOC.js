@@ -1,7 +1,21 @@
 import React, { Component } from "react";
 
 class TOC extends Component {
+  shouldComponentUpdate(newProps, newState) {
+    console.log(
+      "==> TOC render shouldComponentUpdate",
+      newProps.data,
+      this.props.data
+    );
+
+    if (this.props.data === newProps.data) {
+      return false;
+    }
+    return true;
+  }
+
   render() {
+    console.log("==> TOC render");
     const lists = [];
     const data = this.props.data;
     let i = 0;
@@ -11,7 +25,7 @@ class TOC extends Component {
           <a
             href={"/content/" + data[i].id}
             onClick={function (id, e) {
-              console.log(e);
+              // console.log(e);
               e.preventDefault();
               this.props.onChangePage(id);
             }.bind(this, data[i].id)}

@@ -8,7 +8,7 @@ class Subject extends Component {
           <a
             href="/"
             onClick={function (e) {
-              console.log(e);
+              // console.log(e);
               e.preventDefault();
               this.props.onChangePage();
             }.bind(this)}
