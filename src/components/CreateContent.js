@@ -20,7 +20,7 @@ class CreateContent extends Component {
             <input type="text" name="title" placeholder="title"></input>
           </p>
           <p>
-            <textarea name="desc" placeholder="descriptioni"></textarea>
+            <textarea name="desc" placeholder="description"></textarea>
           </p>
           <p>
             <input type="submit"></input>
